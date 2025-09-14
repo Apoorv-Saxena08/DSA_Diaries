@@ -12,9 +12,6 @@ No fancy folder structure — just raw problem solutions I’ve solved and pushe
 
 ---
 
-### 📊 My Progress
-Total Problems Solved: 3
-
 ## ✨ What’s Inside
 📌 **Language:** C++  
 📌 **Content:** Problems from LeetCode, GFG, Codeforces, and more  
