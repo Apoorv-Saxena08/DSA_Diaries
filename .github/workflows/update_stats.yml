@@ -1,0 +1,33 @@
+name: Update DSA Stats
+
+on:
+  push:
+    paths:
+      - '**/*.cpp'
+      - '.github/workflows/update_stats.yml'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Count C++ files
+        id: count
+        run: |
+          FILES=$(find . -name "*.cpp" | wc -l)
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+
+      - name: Update README
+        run: |
+          # Replace placeholder in README
+          sed -i "s/Total Problems Solved: [0-9]\+/Total Problems Solved: ${{ steps.count.outputs.files }}/g" README.md
+
+      - name: Commit changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update problem count" || echo "No changes to commit"
+          git push
