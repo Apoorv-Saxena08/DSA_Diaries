@@ -1,34 +1,37 @@
 class Solution {
 public:
-    int maxi  = -1;
+    int ans = -1 , timer = 1;
 
-    void dfs(int node ,vector<bool>&visited,vector<int>&inR,vector<int>&edges,int depth ){
-        visited[node] = true;
-        inR[node] = depth;
+    void dfs(int u,vector<int>& edges,vector<int>&vis,vector<int>&pathVis,vector<int>&entryTime){
+        vis[u] = 1;
+        pathVis[u] = 1;
+        entryTime[u] = timer++;
 
-        int neigh = edges[node];
-        if(neigh != -1){
-            if(!visited[neigh]){
-                dfs(neigh,visited,inR,edges,depth+1);
+        int v = edges[u];
+
+        if(v != -1){
+            if(!vis[v]){
+                dfs(v,edges,vis,pathVis,entryTime);
             }
-            else if(inR[neigh] != -1){
-                maxi = max(maxi , depth +1 - inR[neigh]);
+            else if(pathVis[v]){
+                int len = entryTime[u] - entryTime[v] +1;
+                ans = max(ans,len);
             }
         }
 
-        inR[node] = -1;
+        pathVis[u] = 0;
     }
 
     int longestCycle(vector<int>& edges) {
         int n = edges.size();
-        vector<bool>visited(n,false);
-        vector<int>inR(n,-1);
+        vector<int>vis(n,0) , pathVis(n,0) , entryTime(n,0);
 
         for(int i = 0 ; i<n;i++){
-            if(!visited[i]){
-                dfs(i,visited,inR,edges,0);
+            if(!vis[i]){
+                dfs(i,edges,vis,pathVis,entryTime);
             }
         }
-        return maxi;
+
+        return ans;
     }
 };
