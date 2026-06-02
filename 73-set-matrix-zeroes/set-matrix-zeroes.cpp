@@ -24,17 +24,25 @@ public:
 
     void setZeroes(vector<vector<int>>& grid) {
         int m = grid.size() , n = grid[0].size();
-        vector<pair<int,int>>v;
+        //vector<pair<int,int>>v;
+        vector<bool>rowZero(m,0);
+        vector<bool>colZero(n,0);
+        
         for(int i = 0 ; i<m ; i++){
             for(int j = 0 ; j<n; j++){
                 if(grid[i][j] == 0){
-                    v.push_back({i,j});
+                    rowZero[i] = 1;
+                    colZero[j] = 1;
                 }
             }
         }
 
-        for(int i = 0 ; i<v.size();i++){
-            solve(grid, v[i].first , v[i].second, m , n);
+        for(int i = 0 ; i<m ; i++){
+            for(int j = 0 ; j<n; j++){
+                if(rowZero[i] || colZero[j]){
+                    grid[i][j] = 0;
+                }
+            }
         }
     }
 };
