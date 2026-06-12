@@ -11,32 +11,44 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode* newList = new ListNode(0);
-        ListNode* temp = newList;
-        //edge cases
-        if(!l1 && l2)return l2;
+        ListNode* newLst = new ListNode(0);
+        ListNode* temp = newLst;
 
-        if(l1 && !l2)return l1;
+        //edge case 
+        if(!l1 && l2){
+            return l2;
+        }
 
-        if(!l1 && !l2)return nullptr;
+        if(l1 && !l2){
+            return l1;
+        }
 
+        if(!l1 && !l2){
+            return nullptr;
+        }
+
+        //actual game 
         while(l1 && l2){
             if(l1->val == l2->val){
                 temp->next = new ListNode(l1->val);
                 temp = temp->next;
-                temp->next = new ListNode(l1->val);
+                temp->next = new ListNode(l2->val);
                 temp = temp->next;
+
                 l1 = l1->next;
-                l2= l2->next;
+                l2 = l2->next;
             }
             else if(l1->val < l2->val){
                 temp->next = new ListNode(l1->val);
                 temp = temp->next;
+
                 l1 = l1->next;
+                
             }
             else{
                 temp->next = new ListNode(l2->val);
                 temp = temp->next;
+
                 l2 = l2->next;
             }
         }
@@ -44,10 +56,11 @@ public:
         if(l1){
             temp->next = l1;
         }
-        else{
+
+        if(l2){
             temp->next = l2;
         }
 
-        return newList->next;
+        return newLst->next;
     }
 };
