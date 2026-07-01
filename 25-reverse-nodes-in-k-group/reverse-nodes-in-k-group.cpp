@@ -12,18 +12,24 @@ class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
         ListNode* curr = head;
-        int c = 0;
+        int count = 0;
 
-        while(curr && c<k){
-            curr = curr->next;
-            c++;
+        //count grp
+        while(curr && count<k){
+            curr =  curr->next;
+            count++;
         }
-        if(c<k)return head;
 
+        //if no grp (base case)
+        if(count<k){
+            return head;
+        }
+
+        //rec
         curr = reverseKGroup(curr , k);
 
-        //rev
-        while(c--){
+        //kaam - reverse
+        while(count--){
             ListNode* temp = head->next;
             head->next = curr;
             curr = head;
