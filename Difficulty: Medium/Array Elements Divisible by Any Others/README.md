@@ -1,0 +1,8 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/count-special-numbers--170647/1?page=7&category=Arrays&difficulty=Medium&status=unsolved&sortBy=accuracy">Array Elements Divisible by Any Others</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO" style="--text-color: var(--problem-text-color);"><p><span style="font-size: 14pt;">Given an array of positive integers <strong>arr[]</strong>. You need to find the count of the special numbers in arr[].&nbsp; A number is said to be a special number if it is divisible by atleast one <strong>other </strong>element of arr[].&nbsp;</span></p>
+<p><span style="font-size: 14pt;"><strong>Examples :</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr[] = [1, 2, 3]
+<strong>Output: </strong>2
+<strong>Explanation: </strong>2 and 3 are divible by 1.</span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr[] = [2, 3, 4, 6, 8, 9]
+<strong>Output: </strong>4<strong><br></strong><strong>Explanation: </strong>4, 6, 8 are divible by 2 and 9 is divisible by 3.</span></pre>
+<p><span style="font-size: 14pt;"><strong>Constraints:</strong><br>1 ≤ arr.size() ≤ 10<sup>5&nbsp;</sup><br>1 ≤ arr[i]&nbsp;≤ 10<sup>6</sup><sup>&nbsp;</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Intuit</code>&nbsp;<code>NPCI</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Arrays</code>&nbsp;<code>Mathematical</code>&nbsp;<code>sieve</code>&nbsp;
