@@ -1,39 +1,33 @@
 class Solution {
 public:
-    int mini = INT_MAX;
+    int solve(int curr, int copy, int n, vector<vector<int>>& dp) {
+        if (curr == n) return 0;
+        if (curr > n) return 1e9;
 
-    void solve(int &curr, int &copy, int n, int &op) {
-        if (curr == n) {
-            mini = min(mini, op);
-            return;
-        }
+        if (dp[curr][copy] != -1)
+            return dp[curr][copy];
 
-        if (curr > n) return;
-        //copy all
+        int copyOp = 1e9;
+        int pasteOp = 1e9;
+
+        // Copy All
         if (copy != curr) {
-            int newCopy = curr;
-            int newOp = op + 1;
-            solve(curr, newCopy, n, newOp);
+            copyOp = 1 + solve(curr, curr, n, dp);
         }
 
         // Paste
         if (copy != 0) {
-            int newCurr = curr + copy;
-            int newOp = op + 1;
-            solve(newCurr, copy, n, newOp);
+            pasteOp = 1 + solve(curr + copy, copy, n, dp);
         }
+
+        return dp[curr][copy] = min(copyOp, pasteOp);
     }
 
     int minSteps(int n) {
         if (n == 1) return 0;
 
-        mini = INT_MAX;
-        int curr = 1;
-        int copy = 0;
-        int op = 0;
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, -1));
 
-        solve(curr, copy, n, op);
-
-        return mini;
+        return solve(1, 0, n, dp);
     }
 };
